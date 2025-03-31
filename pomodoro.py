@@ -2,6 +2,7 @@ import time
 import pygame as pg
 import os
 from session_logger import SessionLogger
+from report_generator import ReportGenerator
 
 class PomodoroTimer:
     """
@@ -65,13 +66,20 @@ class PomodoroTimer:
             self.play_sound()
             print("Break time is over!")
         
-    def start(self):
+    def run(self):
         while True:
             self.create_session()
             print("Starting Pomodoro session...")
             self.start_session()
             print("Pomodoro session completed!")
             self.logger.log_session(self.subject, self.work_duration // 60, self.break_duration // 60, self.session_count)
+            
+            view_report = input("Do you want to view today's stats? (y/n): ").strip().lower()
+            if view_report == 'y':
+                report_generator = ReportGenerator()
+                report = report_generator.generate_report()
+                print(report)
+            
             again = input("Do you want to start another session? (y/n): ").strip().lower()
             if again != 'y':
                 print("Exiting Pomodoro timer.")
@@ -88,8 +96,27 @@ class PomodoroTimer:
                 print("Sound file not found.")
         except Exception as e:
             print(f"Error playing sound: {e}")
-                
+    
+    def present_menu(self):
+        print("Welcome to Pomodoro!")
+        print("Pomodoro Menu")
+        print("1. Start Pomodoro Session")
+        print("2. View Today's Stats")
+        print("3. Exit")
+        choice = input("Enter your choice: ")
+        return choice
+        
+    def start(self):
+        
+        while True:
+            choice = self.present_menu()
             
-if __name__ == "__main__":
-    pomodoro_timer = PomodoroTimer()
-    pomodoro_timer.start()
+            if choice == '1':
+                self.run()
+            elif choice == '2':
+                report_generator = ReportGenerator()
+                report_generator.generate_report()
+            elif choice == '3':
+                break
+            else:
+                print("Invalid choice. Please try again.")

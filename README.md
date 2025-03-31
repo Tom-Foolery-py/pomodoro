@@ -8,12 +8,18 @@ A Pomodoro clock seemed simple enough to build on my own rather than using other
 - Bell alert notification using Pygame
 - SQLite-based session logging (only completed work sessions)
 - Subject tracking per session
+- Session reporting for the day
 
-## Next features
+## Next features/enhancements
 - GUI
 - Theme catalog
-- In-app analytics
+- More comprehensive analytics
+- In-app analytics view
+- Re-factoring to break up responsibilities. Pomodoro script is taking too many responsibilities. Building a separate sessions class that handles all session activity. 
 
+## Version
+
+Current: `0.1.0` - CLI-only prototype, usable for daily studying
 
 ## Acknowledgments 
 - [temple_bell_002.wav](https://freesound.org/people/tec_studio/sounds/668647/) by [tec_studio](https://freesound.org/people/tec_studio/)
