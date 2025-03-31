@@ -1,8 +1,9 @@
 import sqlite3
 from datetime import date 
+from config import DB_PATH, TABLE_NAME
 
 class ReportGenerator:
-    def __init__(self, db_path="pomodoro_sessions.db"):
+    def __init__(self, db_path=DB_PATH):
         self.db_path = db_path
     
     def get_today_sessions(self):
@@ -13,7 +14,8 @@ class ReportGenerator:
         # Connect to the database and fetch sessions for today
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM sessions WHERE date(timestamp) = ?", (today,))
+            sql = f"SELECT * FROM {TABLE_NAME} WHERE date(start_time) = ?"
+            cursor.execute(sql, (today,))
             sessions = cursor.fetchall()
             if not sessions:
                 print("No sessions found for today.")
@@ -30,7 +32,8 @@ class ReportGenerator:
         # Connect to the database and fetch time spent per subject
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT subject, sum(work_duration) from sessions where date(timestamp) = ? group by subject", (today,))
+            sql = f"SELECT subject, sum(work_duration) from {TABLE_NAME} where date(start_time) = ? group by subject"
+            cursor.execute(sql, (today,))
             data = cursor.fetchall()
             
         conn.close()
@@ -45,7 +48,7 @@ class ReportGenerator:
         
         print("Today's Pomodoro Sessions:")
         for session in sessions:
-            print(f"Subject: {session[2]}, Work Duration: {session[3]} minutes, Break Duration: {session[4]} minutes, Session Count: {session[5]}, Total Time: {(session[3] + session[4]) * session[5]} minutes")
+            print(f"Subject: {session[3]}, Work Duration: {session[4]} minutes, Break Duration: {session[5]} minutes, Notes: {session[6]}")
         
         time_spent = self.get_time_spent_per_subject()
         print("\nTime spent per subject today:")

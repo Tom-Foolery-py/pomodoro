@@ -19,7 +19,7 @@ A Pomodoro clock seemed simple enough to build on my own rather than using other
 
 ## Version
 
-Current: `0.1.0` - CLI-only prototype, usable for daily studying
+Current: `0.2.0` - CLI-only prototype, usable for daily studying
 
 ## Acknowledgments 
 - [temple_bell_002.wav](https://freesound.org/people/tec_studio/sounds/668647/) by [tec_studio](https://freesound.org/people/tec_studio/)

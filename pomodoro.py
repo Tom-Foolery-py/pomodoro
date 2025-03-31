@@ -1,6 +1,7 @@
 import time
 import pygame as pg
 import os
+import uuid
 from session_logger import SessionLogger
 from report_generator import ReportGenerator
 
@@ -14,7 +15,6 @@ class PomodoroTimer:
         self.session_count = session_count
         self.work_duration = work_duration * 60
         self.break_duration = break_duration * 60
-        self.subject = subject
         self.sound_file = sound_file
         self.logger = SessionLogger()
         pg.mixer.init()
@@ -32,11 +32,6 @@ class PomodoroTimer:
         work_duration = int(input("Enter work duration in minutes (default is 25): ") or 25)
         break_duration = int(input("Enter break duration in minutes (default is 5): ") or 5)
         session_count = int(input("How many sessions do you want to complete? (default is 4): ") or 4)
-        subject = input("Enter the subject you are studying (optional): ").strip()
-        if subject:
-            self.subject = subject
-        else:
-            self.subject = "General Study"
         self.work_duration = work_duration * 60
         self.break_duration = break_duration * 60
         self.session_count = session_count
@@ -47,7 +42,10 @@ class PomodoroTimer:
         
             
     def start_session(self):
+        session_group_id = str(uuid.uuid4())
+        
         for _ in range(self.session_count):
+            input("Press Enter to start the study session.")
             print("Session {} of {}".format(_ + 1, self.session_count))
             print("Starting Pomodoro session...")
             if self.work_duration == 60:
@@ -56,7 +54,13 @@ class PomodoroTimer:
                 print("Work for {} minutes.".format(self.work_duration // 60))
             self.countdown(self.work_duration // 60)
             self.play_sound()
-            print("Time's up! Take a break.")
+            print("Time's up! Let's take a break.")
+            
+            subject = input("What subject did you work on? ")
+            notes = input("Any notes/reflection for this session? ")
+            self.logger.log_session(session_group_id, subject, self.work_duration // 60, self.break_duration // 60, notes)
+            
+            input("Press Enter to start your break.")
             
             if self.break_duration == 60:
                 print("Break for 1 minute.")
@@ -64,7 +68,8 @@ class PomodoroTimer:
                 print("Break for {} minutes.".format(self.break_duration // 60))
             self.countdown(self.break_duration // 60)
             self.play_sound()
-            print("Break time is over!")
+            print("Break time is over! Let's get back to work.")
+            
         
     def run(self):
         while True:
@@ -72,7 +77,6 @@ class PomodoroTimer:
             print("Starting Pomodoro session...")
             self.start_session()
             print("Pomodoro session completed!")
-            self.logger.log_session(self.subject, self.work_duration // 60, self.break_duration // 60, self.session_count)
             
             view_report = input("Do you want to view today's stats? (y/n): ").strip().lower()
             if view_report == 'y':
