@@ -8,7 +8,7 @@ class PomodoroApp(ctk.CTk):
     def __init__(self):
         super().__init__()
         
-        ctk.set_default_color_theme("themes/green.json") 
+        ctk.set_default_color_theme("themes/orange.json") 
         
         self.title("Pomodoro")
         self.geometry("500x800")

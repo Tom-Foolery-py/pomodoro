@@ -37,7 +37,7 @@ This app is built for internal use, but it’s also a portfolio piece that refle
 - In-app analytics dashboard
 - More robust tracking and reporting
 - Theme catalog system for swappable UI moods
-- Overall window layout
+- Overall UX. Since I'll be using this daily, there will be changes here and there that offers me a better experience
 
 ---
 
