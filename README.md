@@ -41,7 +41,7 @@ This app is built for internal use, but it’s also a portfolio piece that refle
 
 - **State management and event-driven architecture** — especially separating GUI logic from timer logic using callbacks
 - That I learn far more from **building real tools** than passively consuming books or videos
-- That I know nothing. (Yet.)
+- That I know nothing. 
 
 ---
 
