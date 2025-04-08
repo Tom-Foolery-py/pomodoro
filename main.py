@@ -1,12 +1,6 @@
-from report_generator import ReportGenerator
-from pomodoro import PomodoroTimer
-from session_logger import SessionLogger
-
-
-
-
+from gui import PomodoroApp
 
 
 if __name__ == "__main__":
-    pomodoro_timer = PomodoroTimer()
-    pomodoro_timer.start()
+    pomodoro_app = PomodoroApp()
+    pomodoro_app.mainloop()

@@ -26,14 +26,14 @@ class SessionLogger:
             
             conn.commit()
             
-    def log_session(self, study_session_id, subject, work_duration, break_duration, notes):
+    def log_session(self, start_time, study_session_id, subject, work_duration, break_duration, notes):
         with sqlite3.connect(self.db_path) as conn:
             c = conn.cursor()
             sql = f'''
                 INSERT INTO {TABLE_NAME} (study_session_id, start_time, subject, work_duration, break_duration, notes)
                 VALUES (?, ?, ?, ?, ?, ?)
             '''
-            c.execute(sql, (study_session_id ,datetime.now().isoformat(), subject, work_duration, break_duration, notes))
+            c.execute(sql, (study_session_id , start_time, subject, work_duration, break_duration, notes))
             
             conn.commit()
             

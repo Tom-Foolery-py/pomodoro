@@ -1,25 +1,63 @@
 # Pomodoro Clock
 
-## Motivation 
-A Pomodoro clock seemed simple enough to build on my own rather than using others. The key reason I wanted to do this was because a lot of the apps require users to log-in or provide information for use. I wanted more control over my own data in this regard. It also seemed like a learning opportunity for myself. I actually wanted to work on something else but got sidetracked on this project so that I can use it for a different project.
+Pomodoro is a simple but powerful technique to maintain focus during study or work. By structuring sessions with intentional breaks and minimizing distractions, you can enter deep flow states and get more done.
+
+I built this app using the Pomodoro method itself — and ironically, overshot a few sessions just from how effective the method is. So grab a tea, toss your phone in a vault, and enter sigma grindset ultra-study mode.
+
+---
+
+## Motivation
+
+Most Pomodoro apps felt bloated — requiring logins, sending data somewhere, or being overly minimal. I just wanted something simple, personal, and effective, but with a few enhancements.
+
+Also:
+- Microsoft’s Focus Mode never tracked properly in my experience
+- I wanted a **fully offline**, **customizable** Pomodoro timer
+- I needed a way to **log reflection notes** and **track subjects** for future review
+
+This app is built for internal use, but it’s also a portfolio piece that reflects my approach to tools: **purposeful, mindful, and personal**.
+
+---
 
 ## Features
-- Custom Command-line Pomodoro timer
-- Bell alert notification using Pygame
-- SQLite-based session logging (only completed work sessions)
-- Subject tracking per session
-- Session reporting for the day
 
-## Next features/enhancements
-- GUI
-- Theme catalog
-- More comprehensive analytics
-- In-app analytics view
-- Re-factoring to break up responsibilities. Pomodoro script is taking too many responsibilities. Building a separate sessions class that handles all session activity. 
+- GUI-based Pomodoro timer (built with CustomTkinter)
+- SQLite-based session logging (only logs completed work sessions)
+- Subject tracking per session
+- Reflection notes for journaling and review
+
+---
+
+## Planned Enhancements
+
+- Theme customization
+- In-app analytics dashboard
+- More robust tracking and reporting
+- Theme catalog system for swappable UI moods
+
+---
+
+## What I Learned
+
+- **State management and event-driven architecture** — especially separating GUI logic from timer logic using callbacks
+- That I learn far more from **building real tools** than passively consuming books or videos
+- That I know nothing. (Yet.)
+
+---
 
 ## Version
 
-Current: `0.2.0` - CLI-only prototype, usable for daily studying
+**Current:** `1.0.0` — MVP with full session flow and logging
 
-## Acknowledgments 
-- [temple_bell_002.wav](https://freesound.org/people/tec_studio/sounds/668647/) by [tec_studio](https://freesound.org/people/tec_studio/)
+---
+
+## Installation
+
+Ensure you have Python installed (3.10+ recommended).
+
+```bash
+git clone https://github.com/Tom-Foolery-py/pomodoro.git
+cd pomodoro
+pip install -r requirements.txt
+python main.py
+```
